@@ -16,34 +16,34 @@
 
 
 <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '1560980628034628',
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v19.0'
-      });
-        
-      FB.AppEvents.logPageView(); 
+    function login() {
+        FB.login(function(response) {
+            if (response.authResponse) {
+                window.location.href = "whichmachine.html";
+            } else {
+                alert("User cancelled login or did not fully authorize.");
+            }
+        });
+    }
 
-      FB.Event.subscribe('auth.login', function(response) {
-        if (response.status === 'connected') {
-            window.location.href = "whichmachine.html";
-        } else if (response.status === 'not_authorized') {
-            alert("Not authorized")
-        } else {
-            alert("You are not logged in")
-        }
-      });
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '1560980628034628',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v19.0'
+        });
+        
+        FB.AppEvents.logPageView(); 
     };
   
     (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "https://connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>
 </body>
 </html>
