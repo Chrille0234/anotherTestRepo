@@ -24,7 +24,16 @@
         version    : 'v19.0'
       });
         
-      FB.AppEvents.logPageView();   
+      FB.AppEvents.logPageView(); 
+      
+      FB.getLoginStatus(function(response) {
+    if (response.status === 'connected') {
+        window.location.href = "whichmachine.html";
+    } else if (response.status === 'not_authorized') {
+    } else {
+        alert("You are not logged in")
+    }
+});
         
     };
   
@@ -35,6 +44,7 @@
        js.src = "https://connect.facebook.net/en_US/sdk.js";
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
+
   </script>
 </body>
 </html>
