@@ -25,18 +25,16 @@
       });
         
       FB.AppEvents.logPageView(); 
-      
-      FB.getLoginStatus(function(response) {
-    if (response.status === 'connected') {
-        window.location.href = "whichmachine.html";
-        alert("hm")
-    } else if (response.status === 'not_authorized') {
-        alert("not authorized")
-    } else {
-        alert("You are not logged in")
-    }
-});
-        
+
+      FB.Event.subscribe('auth.login', function(response) {
+        if (response.status === 'connected') {
+            window.location.href = "whichmachine.html";
+        } else if (response.status === 'not_authorized') {
+            alert("Not authorized")
+        } else {
+            alert("You are not logged in")
+        }
+      });
     };
   
     (function(d, s, id){
@@ -46,7 +44,6 @@
        js.src = "https://connect.facebook.net/en_US/sdk.js";
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
-
-  </script>
+</script>
 </body>
 </html>
