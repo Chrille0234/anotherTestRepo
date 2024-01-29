@@ -29,7 +29,9 @@
       FB.getLoginStatus(function(response) {
     if (response.status === 'connected') {
         window.location.href = "whichmachine.html";
+        alert("hm")
     } else if (response.status === 'not_authorized') {
+        alert("not authorized")
     } else {
         alert("You are not logged in")
     }
